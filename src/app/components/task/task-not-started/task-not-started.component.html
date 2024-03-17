@@ -1,0 +1,31 @@
+<div class="task">
+  <div class="task__header">
+    <img
+      src="../../../../assets/icons/Check.svg"
+      alt="done"
+      class="task__img"
+    />
+    <span class="task__title">{{ taskItem.title }}</span>
+    <span
+      class="task__hide"
+      [ngClass]="isShowDescriptions ? 'task__alt-hide' : ''"
+      (click)="isShowDescriptions = !isShowDescriptions"
+      >></span
+    >
+  </div>
+
+  <div *ngIf="isShowDescriptions" class="task__description">
+    <textarea
+      class="textarea"
+      [(ngModel)]="description"
+      cols="20"
+      rows="10"
+      placeholder="Описание задачи"
+    ></textarea>
+
+      <div>
+        <app-button text="В работу" (buttonClick)="emitChangeStatus(taskStatus.IN_PROGRESS)"></app-button>
+        <app-button text="Удалить" (buttonClick)="emitDeleteItem()"></app-button>
+      </div>
+  </div>
+</div>

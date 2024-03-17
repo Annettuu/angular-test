@@ -1,0 +1,44 @@
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 23px;
+  border: 1px solid rgb(240, 240, 240);
+  padding: 20px;
+
+  &__title {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+
+    h2 {
+      text-align: center;
+      margin: 0;
+      line-height: 165%;
+    }
+
+    &-name {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    justify-content: center;
+    align-items: center;
+  }
+}

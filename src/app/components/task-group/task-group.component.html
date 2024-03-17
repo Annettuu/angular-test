@@ -1,0 +1,64 @@
+<div class="group">
+  <div class="group__title">
+    <div
+      *ngIf="(isShowTitle)"
+      class="group__title-name"
+    >
+      <h2>{{ taskGroup.title }}</h2>
+    </div>
+    <div class="group__buttons">
+      <app-button
+        *ngIf="isShowTitle; else input"
+        text="Редактировать"
+        (buttonClick)="isShowTitle = false"
+      ></app-button>
+      <ng-template #input>
+        <app-input
+          placeholder="Название группы..."
+          [(value)]="groupTitle"
+          (onBlur)="onEnterValue()"
+          (valueChange)="onEnterValue()">
+        </app-input>
+      </ng-template>
+      <app-button text="Удалить" (buttonClick)="deleteGroupEvent()"></app-button>
+    </div>
+  </div>
+
+  <div
+    *ngFor="let item of taskGroup.items; let i = index"
+    class="group__items"
+  >
+    <ng-container [ngSwitch]="item.status">
+      <app-task-not-started
+        *ngSwitchCase="'not_started'"
+        [taskItem]="item"
+        [index]="i"
+        (eventChangeDescription)="handleChangeItemDescription($event)"
+        (changeStatus)="handleChangeStatus($event)"
+        (deleteItem)="handleDeleteItem($event)"
+      ></app-task-not-started>
+      <app-task-in-progress
+        *ngSwitchCase="'in_progress'"
+        [taskItem]="item"
+        [index]="i"
+        (eventChangeDescription)="handleChangeItemDescription($event)"
+        (changeStatus)="handleChangeStatus($event)"
+        (deleteItem)="handleDeleteItem($event)"
+      ></app-task-in-progress>
+      <app-task-done
+        *ngSwitchCase="'done'"
+        [taskItem]="item"
+        [index]="i"
+        (eventChangeDescription)="handleChangeItemDescription($event)"
+        (changeStatus)="handleChangeStatus($event)"
+        (deleteItem)="handleDeleteItem($event)"
+      ></app-task-done>
+    </ng-container>
+  </div>
+
+  <app-input
+    placeholder="Новая задача"
+    #newTask
+    (valueChange)="addNewTask(newTask.value); newTask.value = ''">
+  </app-input>
+</div>

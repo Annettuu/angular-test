@@ -1,0 +1,9 @@
+<input
+  type="text"
+  class="input"
+  [placeholder]="placeholder"
+  [(ngModel)]="value"
+  (blur)="onBlur.emit()"
+  (keyup.enter)="onEnter(value)"
+/>
+

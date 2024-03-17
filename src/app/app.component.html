@@ -1,0 +1,21 @@
+<header>
+  <h1>Task Manager</h1>
+</header>
+
+<main class="main">
+  <app-button
+    (buttonClick)="addGroup()"
+    text="Добавить группу"
+  ></app-button>
+  <app-task-group
+    *ngFor="let group of taskGroups; let i = index"
+    [index]="i"
+    [taskGroup]="group"
+    (changeTitleEvent)="handleChangeTitle($event)"
+    (deleteGroup)="handleDeleteGroup($event)"
+    (addNewItem)="handleNewItem($event)"
+    (changeDescription)="handleChangeDescription($event)"
+    (changeItemStatus)="handleChangeStatus($event)"
+    (deleteItem)="handleDeleteItem($event)"
+  />
+</main>
